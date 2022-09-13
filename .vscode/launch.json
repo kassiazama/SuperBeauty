@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SuperbeautyApplication<superbeauty>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.unicv.superbeauty.SuperbeautyApplication",
+            "projectName": "superbeauty",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
