@@ -40,5 +40,47 @@
                             incrementBy="1" startWith="1"/>
 
     </changeSet>
+
+    <changeSet id="2" author="Brunna">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela CLIENTE">
+            <not>
+                <tableExists tableName="CLIENTE"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="EMPRESA">
+
+            <column name="CODCLIENTE" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CLIENTE"/>
+            </column>
+
+            <column name="NOME" type="VARCHAR(20)"/>
+
+            <column name="CPF" type="VARCHAR(11)"/>
+
+            <column name="DATANASCIMENTO" type="DATE"/>
+
+            <column name="GENERO" type="VARCHAR(10)"/>
+
+            <column name="CELULAR" type="VARCHAR(11)"/>
+
+            <column name="EMAIL" type="VARCHAR(50)"/>
+
+            <column name="LOGRADOURO" type="VARCHAR(20)"/>
+
+            <column name="BAIRRO" type="VARCHAR(20)"/>
+
+            <column name="NUMERO" type="VARCHAR(4)"/>
+
+            <column name="CEP" type="VARCHAR(8)"/>
+
+        </createTable>
+
+        <addAutoIncrement   tableName="EMPRESA" 
+                            columnName="CODEMPRESA"
+                            columnDataType="int" 
+                            incrementBy="1" startWith="1"/>
+
+    </changeSet>
         
 </databaseChangeLog>
