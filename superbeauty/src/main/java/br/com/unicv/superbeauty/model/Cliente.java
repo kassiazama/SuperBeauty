@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,12 +29,11 @@ public class Cliente implements Serializable{
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "cpf")
     private String cpf;
 
-    @Column(name = "dataNascimento")
     private LocalDate dataNascimento;
 
+    @Enumerated
     private Genero genero;
 
     @Column(name = "celular")
