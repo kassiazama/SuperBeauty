@@ -36,9 +36,7 @@
 
     </changeSet>
 
-    <!-- corrigir problema de changeset liquibase -->
-
-    <!-- <changeSet id="2" author="Brunna">
+    <changeSet id="2" author="Brunna">
         <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela CLIENTE">
             <not>
                 <tableExists tableName="CLIENTE"/>
@@ -48,7 +46,7 @@
         <createTable tableName="CLIENTE">
 
             <column name="CODCLIENTE" autoIncrement="true" type="int">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="CLIENTE"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CLIENTE"/>
             </column>
 
             <column name="NOME" type="VARCHAR(20)"/>
@@ -73,7 +71,7 @@
 
         </createTable>
 
-    </changeSet> -->
+    </changeSet>
 
         
 </databaseChangeLog>
