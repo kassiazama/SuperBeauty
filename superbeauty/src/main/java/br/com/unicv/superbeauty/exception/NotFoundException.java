@@ -1,11 +1,10 @@
 package br.com.unicv.superbeauty.exception;
 
-public class NegocioException extends RuntimeException {
+public class NotFoundException extends RuntimeException {
     
     private static final long serialVersionUID = 1L;
 
-    public NegocioException(String mensagem) {
-
+    public NotFoundException(String mensagem) {
         super(mensagem);
-}
+    }
 }

@@ -1,15 +1,18 @@
 package br.com.unicv.superbeauty.controller;
 
-import java.rmi.ServerException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.unicv.superbeauty.model.Empresa;
@@ -27,16 +30,32 @@ public class EmpresaController {
         return ResponseEntity.status(HttpStatus.OK).body(empresaService.listar());
     }
 
+    @GetMapping(value = "/cnpj")
+    public ResponseEntity<Empresa> buscarPorCnpj(@RequestParam("cnpj") String cnpj) {
+        return ResponseEntity.status(HttpStatus.OK).body(empresaService.buscarPorCnpj(cnpj));
+    }
+
     @PostMapping
-    public ResponseEntity<Empresa> criar(@RequestBody Empresa novaEmpresa) {
-        Empresa empresa = empresaService.cadastrar(novaEmpresa);
+    public ResponseEntity<Empresa> criar(@RequestBody Empresa empresaNova) {
+        Empresa empresa = empresaService.cadastrar(empresaNova);
         if (empresa == null) {
             throw new RuntimeException();
         } else {
             return new ResponseEntity<>(empresa, HttpStatus.CREATED);
         }
     }
+
+    @PutMapping(value ="/{codEmpresa}")
+    public ResponseEntity<Empresa> editar(@PathVariable Integer codEmpresa, @RequestBody Empresa empresaEditada) {
+        return ResponseEntity.status(HttpStatus.OK).body(empresaService.editar(codEmpresa, empresaEditada));
     }
+
+    @DeleteMapping("/{codEmpresa}")
+    public ResponseEntity<Void> excluir(@PathVariable("codEmpresa") Integer codEmpresa) {
+       empresaService.excluir(codEmpresa);
+        return ResponseEntity.noContent().build();
+    }
+}
     
 
 

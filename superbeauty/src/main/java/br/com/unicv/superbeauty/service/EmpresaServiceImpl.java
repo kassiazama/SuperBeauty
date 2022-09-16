@@ -6,7 +6,8 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.unicv.superbeauty.exception.NegocioException;
+import br.com.unicv.superbeauty.exception.NotAcceptableException;
+import br.com.unicv.superbeauty.exception.NotFoundException;
 import br.com.unicv.superbeauty.model.Empresa;
 import br.com.unicv.superbeauty.repository.EmpresaRepository;
 
@@ -22,9 +23,9 @@ public class EmpresaServiceImpl implements EmpresaService {
                 .stream()
                 .anyMatch(empresaExistente -> !empresaExistente.equals(empresa));
         if (cnpjCadastrado) {
-            throw new NegocioException("O CNPJ informado já está em uso");
-            // arrumar essa exceção 
+            throw new NotAcceptableException("O CNPJ informado já está em uso");
         }
+        
         return empresaRepository.save(empresa);
     }
 
@@ -33,16 +34,18 @@ public class EmpresaServiceImpl implements EmpresaService {
         
         var empresaCadastrada = buscarPorId(codEmpresa);
         if (Objects.isNull(empresaCadastrada)){
-            throw new RuntimeException("Empresa não encontrada");
+            throw new NotFoundException("Empresa não encontrada");
         } 
-        // empresaCadastrada.setRazaoSocial(editado.getRazaoSocial());
-        // empresaCadastrada.setCnpj(editado.getCnpj());
-        // empresaCadastrada.setStatus(editado.isStatus());
-        // empresaCadastrada.setLogradouro(editado.getLogradouro());
-        // empresaCadastrada.setBairro(editado.getBairro());
-        // empresaCadastrada.setCep(editado.getCep());
 
-        //transformar em uma função lambda?
+        empresaCadastrada.setRazaoSocial(editado.getRazaoSocial());
+        empresaCadastrada.setCnpj(editado.getCnpj());
+        empresaCadastrada.setStatus(editado.isStatus());
+        empresaCadastrada.setLogradouro(editado.getLogradouro());
+        empresaCadastrada.setNumero(editado.getNumero());
+        empresaCadastrada.setBairro(editado.getBairro());
+        empresaCadastrada.setCep(editado.getCep());
+
+        //transformar em uma função lambda???
 
         return empresaRepository.save(editado);
     }
@@ -54,12 +57,12 @@ public class EmpresaServiceImpl implements EmpresaService {
 
     @Override
     public Empresa buscarPorId(Integer codEmpresa) {
-        return empresaRepository.findById(codEmpresa).orElseThrow(() -> new NegocioException("Empresa não encontrada"));
+        return empresaRepository.findById(codEmpresa).orElseThrow(() -> new NotFoundException("Empresa não encontrada"));
     }
 
     @Override
     public Empresa buscarPorCnpj(String cnpj) {
-        return empresaRepository.findByCnpj(cnpj).orElseThrow(() -> new NegocioException("Empresa não encontrada"));
+        return empresaRepository.findByCnpj(cnpj).orElseThrow(() -> new NotFoundException("Empresa não encontrada"));
     }
 
     @Override
