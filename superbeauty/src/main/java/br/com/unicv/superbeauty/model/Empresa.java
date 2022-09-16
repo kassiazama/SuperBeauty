@@ -2,6 +2,7 @@ package br.com.unicv.superbeauty.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,10 +21,14 @@ public class Empresa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codempresa")
     private Integer codEmpresa;
 
     private String cnpj;
+
+    @Column(name = "razaosocial")
     private String razaoSocial;
+
     private boolean status;
     private String logradouro;
     private String numero;

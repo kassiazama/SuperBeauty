@@ -14,7 +14,7 @@
 
         <createTable tableName="EMPRESA">
 
-            <column name="CODEMPRESA" type="int">
+            <column name="CODEMPRESA"  autoIncrement="true" type="int">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_EMPRESA"/>
             </column>
 
@@ -34,14 +34,11 @@
 
         </createTable>
 
-        <addAutoIncrement   tableName="EMPRESA" 
-                            columnName="CODEMPRESA"
-                            columnDataType="int" 
-                            incrementBy="1" startWith="1"/>
-
     </changeSet>
 
-    <changeSet id="2" author="Brunna">
+    <!-- corrigir problema de changeset liquibase -->
+
+    <!-- <changeSet id="2" author="Brunna">
         <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela CLIENTE">
             <not>
                 <tableExists tableName="CLIENTE"/>
@@ -50,7 +47,7 @@
 
         <createTable tableName="CLIENTE">
 
-            <column name="CODCLIENTE" type="int">
+            <column name="CODCLIENTE" autoIncrement="true" type="int">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CLIENTE"/>
             </column>
 
@@ -76,12 +73,7 @@
 
         </createTable>
 
-        <addAutoIncrement   tableName="CLIENTE" 
-                            columnName="CODCLIENTE"
-                            columnDataType="int" 
-                            incrementBy="1" startWith="1"/>
-
-    </changeSet>
+    </changeSet> -->
 
         
 </databaseChangeLog>

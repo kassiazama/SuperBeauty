@@ -3,6 +3,7 @@ package br.com.unicv.superbeauty.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,12 +24,14 @@ public class Cliente implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codcliente")
     private Integer codCliente;
 
     private String nome;
 
     private String cpf;
 
+    @Column(name = "datanascimento")
     private LocalDate dataNascimento;
 
     @Enumerated(EnumType.STRING)
