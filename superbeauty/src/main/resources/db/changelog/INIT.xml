@@ -76,6 +76,12 @@
         </createTable>
 
     </changeSet> -->
+<changeSet id="3" author="Natalia">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela COLABORADOR">
+            <not>
+                <tableExists tableName="COLABORADOR"/>
+            </not>
+        </preConditions>
 
     <changeSet id="5" author="Joao">
         <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela AGENDAMENTO">
@@ -113,4 +119,53 @@
         </createTable>
 
     </changeSet>
+
+        <createTable tableName="COLABORADOR">
+
+            <column name="CODCOLABORADOR"  autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_COLABORADOR"/>
+            </column>
+
+            <column name="NOME" type="VARCHAR(250)"/>
+
+            <column name="DATANASCIMENTO" type="DATE"/>
+
+            <column name="EMAIL" type="VARCHAR(250)"/>
+
+            <column name="CELULAR" type="VARCHAR(11)"/>
+
+            <column name="DATACONTRATO" type="DATE"/>
+
+            <column name="STATUS" type="BOOLEAN"/>
+
+            <column name="CODEMPRESA" type="INT"/>
+                <constraints nullable="false" foreignKeyName="FK_EMPRESA" references="EMPRESA(CODEMPRESA)" />
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="4" author="Guilherme">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela SERVICO">
+            <not>
+                <tableExists tableName="SERVICO"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="SERVICO">
+
+            <column name="CODSERVICO"  autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_SERVICO"/>
+            </column>
+
+            <column name="EMPRESA" type="EMPRESA"/>
+
+            <column name="PERIODO" type="TIME"/>
+
+            
+        </createTable>
+
+    </changeSet>
+        
+>>>>>>> 8eb1a7a65e499e19d8ba2c0adb67653ca6b21749
 </databaseChangeLog>
