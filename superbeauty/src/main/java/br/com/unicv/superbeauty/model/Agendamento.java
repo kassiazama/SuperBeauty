@@ -26,6 +26,8 @@ public class Agendamento implements Serializable {
     @Column(name = "codagendamento")
     private Integer codAgendamento;
     
+    private Servico servico;
+
     private Colaborador colaborador;
     
     private Empresa empresa;
