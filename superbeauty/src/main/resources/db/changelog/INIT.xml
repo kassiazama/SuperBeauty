@@ -75,5 +75,26 @@
 
     </changeSet> -->
 
+    <changeSet id="4" author="Guilherme">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela SERVICO">
+            <not>
+                <tableExists tableName="SERVICO"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="SERVICO">
+
+            <column name="CODSERVICO"  autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_SERVICO"/>
+            </column>
+
+            <column name="EMPRESA" type="EMPRESA"/>
+
+            <column name="PERIODO" type="TIME"/>
+
+            
+        </createTable>
+
+    </changeSet>
         
 </databaseChangeLog>
