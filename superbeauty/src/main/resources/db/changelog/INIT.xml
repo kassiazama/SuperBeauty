@@ -74,6 +74,37 @@
         </createTable>
 
     </changeSet> -->
+<changeSet id="3" author="Natalia">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela COLABORADOR">
+            <not>
+                <tableExists tableName="COLABORADOR"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="COLABORADOR">
+
+            <column name="CODCOLABORADOR"  autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_COLABORADOR"/>
+            </column>
+
+            <column name="NOME" type="VARCHAR(250)"/>
+
+            <column name="DATANASCIMENTO" type="DATE"/>
+
+            <column name="EMAIL" type="VARCHAR(250)"/>
+
+            <column name="CELULAR" type="VARCHAR(11)"/>
+
+            <column name="DATACONTRATO" type="DATE"/>
+
+            <column name="STATUS" type="BOOLEAN"/>
+
+            <column name="CODEMPRESA" type="INT"/>
+                <constraints nullable="false" foreignKeyName="FK_EMPRESA" references="EMPRESA(CODEMPRESA)" />
+            </column>
+        </createTable>
+
+    </changeSet>
 
     <changeSet id="4" author="Guilherme">
         <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela SERVICO">
