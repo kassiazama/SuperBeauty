@@ -36,6 +36,8 @@
 
     </changeSet>
 
+    
+
     <!-- corrigir problema de changeset liquibase -->
 
     <!-- <changeSet id="2" author="Brunna">
@@ -75,5 +77,40 @@
 
     </changeSet> -->
 
-        
+    <changeSet id="5" author="Joao">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela AGENDAMENTO">
+            <not>
+                <tableExists tableName="AGENDAMENTO"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="AGENDAMENTO">
+
+            <column name="CODAGENDAMENTO"  autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_AGENDAMENTO"/>
+            </column>
+
+            <column name="CODSERVICO" type="int">
+                <constraints nullable="false" ForeignKeyName="FK_SERVICO" references="SERVICO(CODSERVICO)"/>
+            </column>
+
+            <column name="CODCOLABORADOR" type="int">
+                <constraints nullable="false" ForeignKeyName="FK_COLABORADOR" references="COLABORADOR(COLABORADOR)"/>
+            </column>
+
+            <column name="CODEMPRESA" type="int">
+                <constraints nullable="false" ForeignKeyName="FK_EMPRESA" references="EMPRESA(EMPRESA)"/>
+            </column>
+
+            <column name="CODCLIENTE" type="int">
+                <constraints nullable="false" ForeignKeyName="FK_CLIENTE" references="CLIENTE(CLIENTE)"/>
+            </column>
+
+            <column name="HORARIO" type="TIME"/>
+
+            <column name="DATA" type="DATE"/>
+
+        </createTable>
+
+    </changeSet>
 </databaseChangeLog>
