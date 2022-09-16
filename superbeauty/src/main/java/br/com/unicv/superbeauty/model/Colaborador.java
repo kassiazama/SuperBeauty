@@ -22,33 +22,25 @@ import lombok.NoArgsConstructor;
 public class Colaborador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codColaborador")
+    @Column(name = "codcolaborador")
     private Integer codColaborador;
 
-    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "dataNascimento")
+    @Column(name = "datanascimento")
     private LocalDate dataNascimento;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "contato")
-    private String contato;
+    private String celular;
 
-    @Column(name = "dataContato")
+    @Column(name = "datacontrato")
     private LocalDate dataContato;
 
-    @Column(name = "status")
-    private boolean  status;
+    private boolean status;
 
     @ManyToOne
-    @JoinColumn(name = "codEmpresa", referencedColumnName = "codEmpresa")
+    @JoinColumn(name = "codempresa", referencedColumnName = "codEmpresa")
     private Empresa empresa;
-
-    
-
-
 
 }
