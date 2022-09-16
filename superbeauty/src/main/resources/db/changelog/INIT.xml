@@ -33,8 +33,7 @@
             <column name="CEP" type="VARCHAR(8)"/>
 
         </createTable>
-
-    </changeSet>
+     </changeSet>
 
     <changeSet id="2" author="Brunna">
         <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela CLIENTE">
@@ -70,8 +69,99 @@
             <column name="CEP" type="VARCHAR(8)"/>
 
         </createTable>
-
     </changeSet>
 
+        <changeSet id="3" author="Natalia">
+            <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela COLABORADOR">
+                <not>
+                    <tableExists tableName="COLABORADOR"/>
+                </not>
+            </preConditions>
+    
+            <createTable tableName="COLABORADOR">
+    
+                <column name="CODCOLABORADOR"  autoIncrement="true" type="int">
+                    <constraints nullable="false" primaryKey="true" primaryKeyName="PK_COLABORADOR"/>
+                </column>
+    
+                <column name="NOME" type="VARCHAR(250)"/>
+    
+                <column name="DATANASCIMENTO" type="DATE"/>
+    
+                <column name="EMAIL" type="VARCHAR(250)"/>
+    
+                <column name="CELULAR" type="VARCHAR(11)"/>
+    
+                <column name="DATACONTRATO" type="DATE"/>
+    
+                <column name="STATUS" type="BOOLEAN"/>
+    
+                <column name="CODEMPRESA" type="INT">
+                    <constraints nullable="false" foreignKeyName="FK_EMPRESA" references="EMPRESA(CODEMPRESA)"/>
+                </column>
+
+            </createTable>
+        </changeSet>
+
+        <changeSet id="4" author="Guilherme">
+            <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela SERVIÇO">
+                <not>
+                    <tableExists tableName="SERVICO"/>
+                </not>
+            </preConditions>
+    
+            <createTable tableName="SERVICO">
+    
+                <column name="CODSERVICO"  autoIncrement="true" type="int">
+                    <constraints nullable="false" primaryKey="true" primaryKeyName="PK_SERVICO"/>
+                </column>
+    
+                <column name="CODEMPRESA" type="INT">
+                    <constraints nullable="false" foreignKeyName="FK_EMPRESA_SERVICO" references="EMPRESA(CODEMPRESA)"/>
+                </column>
+    
+                <column name="PERIODO" type="TIME"/>
+
+                <column name="VALORSERVICO" type="DOUBLE"/>
+    
+            </createTable>
+        </changeSet>
+
+    
+    <changeSet id="5" author="Joao">
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela AGENDAMENTO">
+            <not>
+                <tableExists tableName="AGENDAMENTO"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="AGENDAMENTO">
+
+            <column name="CODAGENDAMENTO"  autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_AGENDAMENTO"/>
+            </column>
+
+            <column name="CODSERVICO" type="int">
+                <constraints nullable="false" foreignKeyName="FK_SERVICO_AGENDAMENTO" references="SERVICO(CODSERVICO)"/>
+            </column>
+
+            <column name="CODCOLABORADOR" type="int">
+                <constraints nullable="false" foreignKeyName="FK_COLABORADOR_AGENDAMENTO" references="COLABORADOR(CODCOLABORADOR)"/>
+            </column>
+
+            <column name="CODEMPRESA" type="int">
+                <constraints nullable="false" foreignKeyName="FK_EMPRESA_AGENDAMENTO" references="EMPRESA(CODEMPRESA)"/>
+            </column>
+
+            <column name="CODCLIENTE" type="int">
+                <constraints nullable="false" foreignKeyName="FK_CLIENTE_AGENDAMENTO" references="CLIENTE(CODCLIENTE)"/>
+            </column>
+
+            <column name="HORARIO" type="TIME"/>
+
+            <column name="DATA" type="DATE"/>
+
+        </createTable>
+    </changeSet>
         
 </databaseChangeLog>

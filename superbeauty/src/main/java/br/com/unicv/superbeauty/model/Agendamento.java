@@ -1,6 +1,8 @@
 package br.com.unicv.superbeauty.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,29 +21,29 @@ import lombok.NoArgsConstructor;
 @Data
 
 @Entity
-public class Colaborador implements Serializable {
-
+public class Agendamento implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codcolaborador")
-    private Integer codColaborador;
-
-    private String nome;
-
-    @Column(name = "datanascimento")
-    private LocalDate dataNascimento;
-
-    private String email;
-
-    private String celular;
-
-    @Column(name = "datacontrato")
-    private LocalDate dataContato;
-
-    private boolean status;
-
-    @ManyToOne
-    @JoinColumn(name = "codempresa", referencedColumnName = "codEmpresa")
+    @Column(name = "codagendamento")
+    private Integer codAgendamento;
+    
+    private Servico servico;
+    
     private Empresa empresa;
+    
+    private Cliente cliente;
+    
+    private LocalDateTime horario;
+    
+    private LocalDate data;
+    
+    @ManyToOne
+    @JoinColumn(name = "codColaborador", referencedColumnName = "codColaborador")
+    private Colaborador colaborador;
+
+    
+  
+
 
 }
