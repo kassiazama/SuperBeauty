@@ -28,19 +28,24 @@ public class Agendamento implements Serializable {
     @Column(name = "codagendamento")
     private Integer codAgendamento;
     
-    private Servico servico;
-    
-    private Empresa empresa;
-    
-    private Cliente cliente;
-    
-    private LocalDateTime horario;
-    
-    private LocalDate data;
+    private LocalDateTime dataHora;
     
     @ManyToOne
-    @JoinColumn(name = "codColaborador", referencedColumnName = "codColaborador")
+    @JoinColumn(name = "codColaborador", referencedColumnName = "codcolaborador")
     private Colaborador colaborador;
+
+    @ManyToOne
+    @JoinColumn(name = "codServico", referencedColumnName = "codservico")
+    private Servico servico;
+    
+    @ManyToOne
+    @JoinColumn(name = "codEmpresa", referencedColumnName = "codempresa")
+    private Empresa empresa;
+    
+    @ManyToOne
+    @JoinColumn(name = "codCliente", referencedColumnName = "codcliente")
+    private Cliente cliente;
+    
 
     
   

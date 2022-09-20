@@ -41,13 +41,13 @@ public class EmpresaController {
         if (empresa == null) {
             throw new RuntimeException();
         } else {
-            return new ResponseEntity<>(empresa, HttpStatus.CREATED);
+            return new ResponseEntity<Empresa>(HttpStatus.CREATED);
         }
     }
 
     @PutMapping(value ="/{codEmpresa}")
-    public ResponseEntity<Empresa> editar(@PathVariable Integer codEmpresa, @RequestBody Empresa empresaEditada) {
-        return ResponseEntity.status(HttpStatus.OK).body(empresaService.editar(codEmpresa, empresaEditada));
+    public ResponseEntity<Empresa> editar( @RequestBody Empresa empresaEditada) {
+        return ResponseEntity.status(HttpStatus.OK).body(empresaService.editar(empresaEditada));
     }
 
     @DeleteMapping("/{codEmpresa}")

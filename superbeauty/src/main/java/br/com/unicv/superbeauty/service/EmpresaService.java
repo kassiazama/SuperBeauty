@@ -11,7 +11,7 @@ public interface EmpresaService {
 
     public Empresa cadastrar(Empresa empresa);
 
-    public Empresa editar(Integer codEmpresa, Empresa editado);
+    public Empresa editar(Empresa empresa);
 
     public List<Empresa> listar();
 

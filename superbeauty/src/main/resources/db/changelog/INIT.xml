@@ -157,9 +157,8 @@
                 <constraints nullable="false" foreignKeyName="FK_CLIENTE_AGENDAMENTO" references="CLIENTE(CODCLIENTE)"/>
             </column>
 
-            <column name="HORARIO" type="TIME"/>
+            <column name="DATAHORA" type="timestamp"/>
 
-            <column name="DATA" type="DATE"/>
 
         </createTable>
     </changeSet>

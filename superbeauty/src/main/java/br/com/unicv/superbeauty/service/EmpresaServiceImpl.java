@@ -1,7 +1,6 @@
 package br.com.unicv.superbeauty.service;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,24 +29,8 @@ public class EmpresaServiceImpl implements EmpresaService {
     }
 
     @Override
-    public Empresa editar(Integer codEmpresa, Empresa editado) {
-        
-        var empresaCadastrada = buscarPorId(codEmpresa);
-        if (Objects.isNull(empresaCadastrada)){
-            throw new NotFoundException("Empresa não encontrada");
-        } 
-
-        empresaCadastrada.setRazaoSocial(editado.getRazaoSocial());
-        empresaCadastrada.setCnpj(editado.getCnpj());
-        empresaCadastrada.setStatus(editado.isStatus());
-        empresaCadastrada.setLogradouro(editado.getLogradouro());
-        empresaCadastrada.setNumero(editado.getNumero());
-        empresaCadastrada.setBairro(editado.getBairro());
-        empresaCadastrada.setCep(editado.getCep());
-
-        //transformar em uma função lambda???
-
-        return empresaRepository.save(editado);
+    public Empresa editar(Empresa empresa) {
+         return empresaRepository.save(empresa);
     }
 
     @Override
