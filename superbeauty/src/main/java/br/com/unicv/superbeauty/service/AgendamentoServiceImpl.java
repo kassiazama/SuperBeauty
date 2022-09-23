@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.unicv.superbeauty.exception.NotAcceptableException;
 import br.com.unicv.superbeauty.exception.NotFoundException;
 import br.com.unicv.superbeauty.model.Agendamento;
+import br.com.unicv.superbeauty.model.Colaborador;
 import br.com.unicv.superbeauty.repository.AgendamentoRepository;
 
 @Service
@@ -19,13 +20,20 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 
     @Override
     public Agendamento cadastrar(Agendamento agendamento) {
-        boolean horarioDisponivel = agendamentoRepository.findByDataHora(agendamento.getDataHora())
-                .stream()
-                .anyMatch(agendamentoExistente -> !agendamentoExistente.equals(agendamento));
-        if (horarioDisponivel) {
-            throw new NotAcceptableException("A Data e a hora estão indisponiveis");
-        }
 
+        boolean horarioReservado = agendamentoRepository.findByDataHora(agendamento.getDataHora())
+            .stream()
+            .anyMatch(horarioOcupado -> !horarioOcupado.equals(agendamento));
+
+        // boolean colaboradorAtendendo = agendamentoRepository.findByColaborador(agendamento.getColaborador())
+        //     .stream()
+        //     .anyMatch(colaboradorOcupado -> !colaboradorOcupado.equals(agendamento));
+
+            //corrigir essa lógica 
+
+        if (horarioReservado /*&& colaboradorAtendendo*/) {
+            throw new NotAcceptableException("Horário indisponível");
+        }
         return agendamentoRepository.save(agendamento);
     }
 
@@ -46,6 +54,11 @@ public class AgendamentoServiceImpl implements AgendamentoService {
     }
 
     @Override
+    public Agendamento buscarPorColaborador(Colaborador colaborador) {
+        return agendamentoRepository.findByColaborador(colaborador).orElseThrow(() -> new NotFoundException(" "));
+    }
+
+    @Override
     public Agendamento buscarPorDataHora(LocalDateTime dataHora) {
         return agendamentoRepository.findByDataHora(dataHora)
                 .orElseThrow(() -> new NotFoundException("Data e hora não encontrado"));
@@ -56,5 +69,7 @@ public class AgendamentoServiceImpl implements AgendamentoService {
         agendamentoRepository.deleteById(codAgendamento);
 
     }
+
+    
 
 }

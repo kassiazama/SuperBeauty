@@ -15,33 +15,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.unicv.superbeauty.model.Agendamento;
-import br.com.unicv.superbeauty.service.AgendamentoServiceImpl;
+import br.com.unicv.superbeauty.service.AgendamentoService;
 
 @RestController
 @RequestMapping(value = "/agendamento")
 public class AgendamentoController {
     
     @Autowired
-    private AgendamentoServiceImpl agendamentoService;
+    private AgendamentoService agendamentoService;
 
     @GetMapping
     public ResponseEntity<List<Agendamento>> listarAgendamento() {
         return ResponseEntity.status(HttpStatus.OK).body(agendamentoService.listar());
     }
 
-    @PostMapping
-    public ResponseEntity<Agendamento> criar(@RequestBody Agendamento agendamentoNova) {
-        Agendamento agendamento = agendamentoService.cadastrar(agendamentoNova);
-        if (agendamento == null) {
-            throw new RuntimeException();
-        } else {
-            return new ResponseEntity<Agendamento>(HttpStatus.CREATED);
-        }
+    @PostMapping()
+    public ResponseEntity<Agendamento> criar(@RequestBody Agendamento agendamentoNovo) {
+            return ResponseEntity.status(HttpStatus.OK).body(agendamentoService.cadastrar(agendamentoNovo));
     }
-
-    @PutMapping(value ="/{codAgendamento}")
-    public ResponseEntity<Agendamento> editar( @RequestBody Agendamento agendamentoEditada) {
-        return ResponseEntity.status(HttpStatus.OK).body(agendamentoService.editar(agendamentoEditada));
+    
+    @PutMapping()
+    public ResponseEntity<Agendamento> editar(@RequestBody Agendamento agendamentoEditado) {
+        return ResponseEntity.status(HttpStatus.OK).body(agendamentoService.editar(agendamentoEditado));
     }
 
     @DeleteMapping("/{codAgendamento}")

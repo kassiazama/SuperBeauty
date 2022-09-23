@@ -24,13 +24,13 @@ public class EmpresaServiceImpl implements EmpresaService {
         if (cnpjCadastrado) {
             throw new NotAcceptableException("O CNPJ informado já está em uso");
         }
-        
+
         return empresaRepository.save(empresa);
     }
 
     @Override
     public Empresa editar(Empresa empresa) {
-         return empresaRepository.save(empresa);
+        return empresaRepository.save(empresa);
     }
 
     @Override
@@ -40,7 +40,8 @@ public class EmpresaServiceImpl implements EmpresaService {
 
     @Override
     public Empresa buscarPorId(Integer codEmpresa) {
-        return empresaRepository.findById(codEmpresa).orElseThrow(() -> new NotFoundException("Empresa não encontrada"));
+        return empresaRepository.findById(codEmpresa)
+                .orElseThrow(() -> new NotFoundException("Empresa não encontrada"));
     }
 
     @Override
@@ -51,7 +52,6 @@ public class EmpresaServiceImpl implements EmpresaService {
     @Override
     public void excluir(Integer codEmpresa) {
         empresaRepository.deleteById(codEmpresa);
-
     }
 
 }

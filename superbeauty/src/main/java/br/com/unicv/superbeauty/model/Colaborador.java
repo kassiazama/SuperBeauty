@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Email;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,20 +32,25 @@ public class Colaborador implements Serializable {
 
     private String nome;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "datanascimento")
     private LocalDate dataNascimento;
 
+    @Email
     private String email;
 
     private String celular;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "datacontrato")
     private LocalDate dataContato;
 
     private boolean status;
 
+     //@JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "codempresa", referencedColumnName = "codEmpresa")
+    @JoinColumn(name="codempresa", referencedColumnName="codEmpresa")
     private Empresa empresa;
 
 }
+

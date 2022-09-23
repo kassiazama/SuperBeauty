@@ -35,5 +35,8 @@ public class Empresa implements Serializable {
     private String bairro;
     private String cep;
 
-    
+    // @OneToMany(cascade = CascadeType.ALL)
+    // @JoinColumn(name = "codempresa")
+    // private List<Colaborador> colaborador;
+
 }

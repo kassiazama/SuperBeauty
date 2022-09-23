@@ -17,17 +17,6 @@ public class ColaboradorServiceImpl implements ColaboradorService{
     private ColaboradorRepository colaboradorRepository;
 
     @Override
-    public Colaborador buscarPorEmail(String email) {
-        return colaboradorRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("Colaborador não encontrada"));
-    
-    }
-
-    @Override
-    public Colaborador buscarPorId(Integer codColaborador) {
-        return colaboradorRepository.findById(codColaborador).orElseThrow(() -> new NotFoundException("Empresa não encontrada"));
-    }
-
-    @Override
     public Colaborador cadastrar(Colaborador colaborador) {
         boolean emailCadastrado = colaboradorRepository.findByEmail(colaborador.getEmail())
         .stream()
@@ -44,14 +33,25 @@ public class ColaboradorServiceImpl implements ColaboradorService{
     }
 
     @Override
-    public void excluir(Integer codColaborador) {
-        colaboradorRepository.deleteById(codColaborador);
-        
-    }
-
-    @Override
     public List<Colaborador> listar() {
         return colaboradorRepository.findAll();
     }
+
+    @Override
+    public Colaborador buscarPorId(Integer codColaborador) {
+        return colaboradorRepository.findById(codColaborador).orElseThrow(() -> new NotFoundException("Empresa não encontrada"));
+    }
+
+    @Override
+    public Colaborador buscarPorEmail(String email) {
+        return colaboradorRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("Colaborador não encontrada"));
+    }
+
+    @Override
+    public void excluir(Integer codColaborador) {
+        colaboradorRepository.deleteById(codColaborador); 
+    }
+
+    
     
 }

@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.unicv.superbeauty.model.Empresa;
-import br.com.unicv.superbeauty.service.EmpresaServiceImpl;
+import br.com.unicv.superbeauty.service.EmpresaService;
 
 @RestController
 @RequestMapping(value = "/empresa")
 public class EmpresaController {
 
     @Autowired
-    private EmpresaServiceImpl empresaService;
+    private EmpresaService empresaService;
 
     @GetMapping
     public ResponseEntity<List<Empresa>> listarEmpresas() {
@@ -35,30 +35,19 @@ public class EmpresaController {
         return ResponseEntity.status(HttpStatus.OK).body(empresaService.buscarPorCnpj(cnpj));
     }
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Empresa> criar(@RequestBody Empresa empresaNova) {
-        Empresa empresa = empresaService.cadastrar(empresaNova);
-        if (empresa == null) {
-            throw new RuntimeException();
-        } else {
-            return new ResponseEntity<Empresa>(HttpStatus.CREATED);
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(empresaService.cadastrar(empresaNova));
     }
 
-    @PutMapping(value ="/{codEmpresa}")
-    public ResponseEntity<Empresa> editar( @RequestBody Empresa empresaEditada) {
+    @PutMapping
+    public ResponseEntity<Empresa> editar(@RequestBody Empresa empresaEditada) {
         return ResponseEntity.status(HttpStatus.OK).body(empresaService.editar(empresaEditada));
     }
 
     @DeleteMapping("/{codEmpresa}")
-    public ResponseEntity<Void> excluir(@PathVariable("codEmpresa") Integer codEmpresa) {
-       empresaService.excluir(codEmpresa);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> excluir(@PathVariable("codEmpresa") Integer codEmpresa) {
+        empresaService.excluir(codEmpresa);
+        return ResponseEntity.status(HttpStatus.OK).body("Empresa excluída com sucesso");
     }
 }
-    
-
-
-
-
-    

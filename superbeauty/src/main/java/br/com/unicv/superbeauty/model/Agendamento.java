@@ -29,7 +29,7 @@ public class Agendamento implements Serializable {
     @Column(name = "codagendamento")
     private Integer codAgendamento;
     
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "datahora")
     private LocalDateTime dataHora;
     
