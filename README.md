@@ -6,9 +6,9 @@ Disciplina: Engenharia de Software II. <br>
 Professor: Leonardo Catharin. <br> 
 
 - Spring Data JPA; <br> 
-- Lombook; <br> 
+- Lombok 🌶; <br> 
 - Versionamento de banco com Liquibase; <br>
-- Banco de dados em PostgreSQL. <br> 
+- Banco de dados em PostgreSQL 🐘. <br> 
 
 Requisitos: antes de executar o projeto, criar o Database SuperBeauty no PostgreSQL. <br> 
 Requisições no Postman: https://github.com/kassiazama/SuperBeauty/blob/main/demonstracao/SuperBeauty.postman_collection.json
