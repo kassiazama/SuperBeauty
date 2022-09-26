@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.unicv.superbeauty.model.Colaborador;
 import br.com.unicv.superbeauty.service.ColaboradorService;
+
 @RestController
 @RequestMapping(value = "/colaborador")
 public class ColaboradorController {
@@ -42,13 +43,13 @@ public class ColaboradorController {
     }
 
     @PutMapping()
-    public ResponseEntity<Colaborador> editar( @RequestBody Colaborador colaboradorEditado) {
+    public ResponseEntity<Colaborador> editar(@RequestBody Colaborador colaboradorEditado) {
         return ResponseEntity.status(HttpStatus.OK).body(colaboradorService.editar(colaboradorEditado));
     }
 
     @DeleteMapping("/{codColaborador}")
     public ResponseEntity<String> excluir(@PathVariable("codColaborador") Integer codColaborador) {
-       colaboradorService.excluir(codColaborador);
+        colaboradorService.excluir(codColaborador);
         return ResponseEntity.status(HttpStatus.OK).body("Colaborador excluído com sucesso");
     }
 }

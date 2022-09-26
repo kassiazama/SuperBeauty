@@ -7,5 +7,4 @@ import br.com.unicv.superbeauty.model.Servico;
 public interface ServicoRepository extends JpaRepository<Servico, Integer> {
 
     
-    
 }

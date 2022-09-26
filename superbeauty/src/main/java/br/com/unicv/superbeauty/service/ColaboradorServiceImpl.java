@@ -19,16 +19,12 @@ public class ColaboradorServiceImpl implements ColaboradorService{
     @Override
     public Colaborador cadastrar(Colaborador colaborador) {
         boolean emailCadastrado = colaboradorRepository.findByEmail(colaborador.getEmail())
-        .stream()
-        .anyMatch(colaboradorExistente -> !colaboradorExistente.equals(colaborador));
+                                    .stream()
+                                    .anyMatch(colaboradorExistente -> !colaboradorExistente.equals(colaborador));
         if (emailCadastrado) {
-            throw new NotAcceptableException("O email informado já está em uso");
+            throw new NotAcceptableException("O Email informado já está em uso");
         }
-        return colaboradorRepository.save(colaborador);
-    }
 
-    @Override
-    public Colaborador editar(Colaborador colaborador) {
         return colaboradorRepository.save(colaborador);
     }
 
@@ -39,12 +35,19 @@ public class ColaboradorServiceImpl implements ColaboradorService{
 
     @Override
     public Colaborador buscarPorId(Integer codColaborador) {
-        return colaboradorRepository.findById(codColaborador).orElseThrow(() -> new NotFoundException("Empresa não encontrada"));
+        return colaboradorRepository.findById(codColaborador)
+                .orElseThrow(() -> new NotFoundException("Colaborador não encontrado"));
     }
 
     @Override
     public Colaborador buscarPorEmail(String email) {
-        return colaboradorRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("Colaborador não encontrada"));
+        return colaboradorRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Colaborador não encontrado"));
+    }
+
+    @Override
+    public Colaborador editar(Colaborador colaborador) {
+        return colaboradorRepository.save(colaborador);
     }
 
     @Override

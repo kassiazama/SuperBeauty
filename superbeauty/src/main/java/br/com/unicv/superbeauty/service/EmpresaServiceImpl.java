@@ -19,17 +19,12 @@ public class EmpresaServiceImpl implements EmpresaService {
     @Override
     public Empresa cadastrar(Empresa empresa) {
         boolean cnpjCadastrado = empresaRepository.findByCnpj(empresa.getCnpj())
-                .stream()
-                .anyMatch(empresaExistente -> !empresaExistente.equals(empresa));
+                                    .stream()
+                                    .anyMatch(empresaExistente -> !empresaExistente.equals(empresa));
         if (cnpjCadastrado) {
             throw new NotAcceptableException("O CNPJ informado já está em uso");
         }
 
-        return empresaRepository.save(empresa);
-    }
-
-    @Override
-    public Empresa editar(Empresa empresa) {
         return empresaRepository.save(empresa);
     }
 
@@ -46,12 +41,17 @@ public class EmpresaServiceImpl implements EmpresaService {
 
     @Override
     public Empresa buscarPorCnpj(String cnpj) {
-        return empresaRepository.findByCnpj(cnpj).orElseThrow(() -> new NotFoundException("Empresa não encontrada"));
+        return empresaRepository.findByCnpj(cnpj)
+                .orElseThrow(() -> new NotFoundException("Empresa não encontrada"));
+    }
+
+    @Override
+    public Empresa editar(Empresa empresa) {
+        return empresaRepository.save(empresa);
     }
 
     @Override
     public void excluir(Integer codEmpresa) {
         empresaRepository.deleteById(codEmpresa);
     }
-
 }

@@ -11,14 +11,13 @@ public interface ColaboradorService {
   
     public Colaborador cadastrar(Colaborador colaborador);
 
-    public Colaborador editar(Colaborador colaborador);
-
     public List<Colaborador> listar();
 
     public Colaborador buscarPorId(Integer codColaborador); 
 
     public Colaborador buscarPorEmail(String email);
-    
+
+    public Colaborador editar(Colaborador colaborador);
 
     public void excluir(Integer codColaborador);
 }

@@ -1,9 +1,6 @@
 package br.com.unicv.superbeauty.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,7 +26,9 @@ public class Servico implements Serializable {
     @Column(name = "codservico")
     private Integer codServico;
 
-    private LocalDateTime periodo;
+    private String descricao;
+
+    private int duracao;
     
     @Column(name = "valorservico")
     private double valorServico;
@@ -39,5 +37,4 @@ public class Servico implements Serializable {
     @JoinColumn(name = "codempresa", referencedColumnName = "codEmpresa")
     private Empresa empresa;
 
-    
 }

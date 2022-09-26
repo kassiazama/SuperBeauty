@@ -20,27 +20,29 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 
     @Override
     public Agendamento cadastrar(Agendamento agendamento) {
-
-        boolean horarioReservado = agendamentoRepository.findByDataHora(agendamento.getDataHora())
-            .stream()
-            .anyMatch(horarioOcupado -> !horarioOcupado.equals(agendamento));
-
-        // boolean colaboradorAtendendo = agendamentoRepository.findByColaborador(agendamento.getColaborador())
-        //     .stream()
-        //     .anyMatch(colaboradorOcupado -> !colaboradorOcupado.equals(agendamento));
-
-            //corrigir essa lógica 
-
-        if (horarioReservado /*&& colaboradorAtendendo*/) {
-            throw new NotAcceptableException("Horário indisponível");
+        boolean horarioDisponivel = agendamentoRepository.findByDataHora(agendamento.getDataHora())
+                                    .stream()
+                                    .anyMatch(horarioReservado -> !horarioReservado.equals(agendamento));
+        if (horarioDisponivel) {
+            throw new NotAcceptableException("Horário indispoível");
         }
         return agendamentoRepository.save(agendamento);
     }
 
-    @Override
-    public Agendamento editar(Agendamento agendamento) {
-        return agendamentoRepository.save(agendamento);
-    }
+
+//     Retorna erro -> javax.persistence.NonUniqueResultException: query did not return a unique result: (2 dois resultados???)
+//     boolean horarioDisponivel = agendamentoRepository.findByDataHora(agendamento.getDataHora())
+//             .stream()
+//             .anyMatch(horarioReservado -> !horarioReservado.equals(agendamento));
+
+//     boolean colaboradorDisponivel = agendamentoRepository.findByColaborador(agendamento.getColaborador())
+//             .stream()
+//             .anyMatch(colaboradorAtendendo -> !colaboradorAtendendo.equals(agendamento));
+//     if (horarioDisponivel && colaboradorDisponivel) {
+//         throw new NotAcceptableException("Horário indispoível");
+//     }
+//     return agendamentoRepository.save(agendamento);
+// }
 
     @Override
     public List<Agendamento> listar() {
@@ -54,14 +56,19 @@ public class AgendamentoServiceImpl implements AgendamentoService {
     }
 
     @Override
-    public Agendamento buscarPorColaborador(Colaborador colaborador) {
-        return agendamentoRepository.findByColaborador(colaborador).orElseThrow(() -> new NotFoundException(" "));
+    public Agendamento buscarPorDataHora(LocalDateTime dataHora) {
+        return agendamentoRepository.findByDataHora(dataHora)
+                .orElseThrow(() -> new NotFoundException("Data e hora não encontrada"));
     }
 
     @Override
-    public Agendamento buscarPorDataHora(LocalDateTime dataHora) {
-        return agendamentoRepository.findByDataHora(dataHora)
-                .orElseThrow(() -> new NotFoundException("Data e hora não encontrado"));
+    public Agendamento buscarPorColaborador(Colaborador codColaborador) {
+        return agendamentoRepository.findByColaborador(codColaborador).orElseThrow(() -> new NotFoundException("Colabor não encontrada"));
+    }
+
+    @Override
+    public Agendamento editar(Agendamento agendamento) {
+        return agendamentoRepository.save(agendamento);
     }
 
     @Override
@@ -69,7 +76,4 @@ public class AgendamentoServiceImpl implements AgendamentoService {
         agendamentoRepository.deleteById(codAgendamento);
 
     }
-
-    
-
 }

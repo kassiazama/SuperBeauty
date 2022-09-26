@@ -47,7 +47,6 @@ public class Colaborador implements Serializable {
 
     private boolean status;
 
-     //@JsonIgnore
     @ManyToOne
     @JoinColumn(name="codempresa", referencedColumnName="codEmpresa")
     private Empresa empresa;

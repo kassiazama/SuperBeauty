@@ -21,29 +21,28 @@ import br.com.unicv.superbeauty.service.ServicoService;
 @RequestMapping(value = "/servico")
 public class ServicoController {
 
-
     @Autowired
     private ServicoService servicoService;
 
     @GetMapping
-    public  ResponseEntity<List<Servico>> listarServico() {
+    public ResponseEntity<List<Servico>> listarServico() {
         return ResponseEntity.status(HttpStatus.OK).body(servicoService.listar());
     }
-    
-    @PostMapping
+
+    @PostMapping()
     public ResponseEntity<Servico> criar(@RequestBody Servico servicoNovo) {
         return ResponseEntity.status(HttpStatus.OK).body(servicoService.cadastrar(servicoNovo));
     }
-    
-    @PutMapping(value ="/{codServico}")
-    public ResponseEntity<Servico> editar( @RequestBody Servico servicoEditado) {
+
+    @PutMapping
+    public ResponseEntity<Servico> editar(@RequestBody Servico servicoEditado) {
         return ResponseEntity.status(HttpStatus.OK).body(servicoService.editar(servicoEditado));
     }
 
     @DeleteMapping("/{codServico}")
     public ResponseEntity<String> excluir(@PathVariable("codServico") Integer codServico) {
-       servicoService.excluir(codServico);
-        return ResponseEntity.status(HttpStatus.OK).body("Servico excluída com sucesso");
+        servicoService.excluir(codServico);
+        return ResponseEntity.status(HttpStatus.OK).body("Servico excluído com sucesso");
     }
-    
+
 }

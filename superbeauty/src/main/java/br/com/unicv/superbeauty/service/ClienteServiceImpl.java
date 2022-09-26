@@ -19,17 +19,12 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public Cliente cadastrar(Cliente cliente) {
         boolean cpfCadastrado = clienteRepository.findByCpf(cliente.getCpf())
-            .stream()
-            .anyMatch(clienteExistente -> !clienteExistente.equals(cliente));
+                                .stream()
+                                .anyMatch(clienteExistente -> !clienteExistente.equals(cliente));
         if(cpfCadastrado) {
             throw new NotAcceptableException("O CPF informado já está em uso");
         }
         
-        return clienteRepository.save(cliente);
-    }
-
-    @Override
-    public Cliente editar(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
@@ -40,12 +35,19 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente buscarPorId(Integer codCliente) {
-        return clienteRepository.findById(codCliente).orElseThrow(() -> new NotFoundException("Cliente não encontrado"));
+        return clienteRepository.findById(codCliente)
+                .orElseThrow(() -> new NotFoundException("Cliente não encontrado"));
     }
 
     @Override
     public Cliente buscarPorCpf(String cpf) {
-        return clienteRepository.findByCpf(cpf).orElseThrow(() -> new NotFoundException("Cliente não encontrado"));
+        return clienteRepository.findByCpf(cpf)
+                .orElseThrow(() -> new NotFoundException("Cliente não encontrado"));
+    }
+
+    @Override
+    public Cliente editar(Cliente cliente) {
+        return clienteRepository.save(cliente);
     }
 
     @Override

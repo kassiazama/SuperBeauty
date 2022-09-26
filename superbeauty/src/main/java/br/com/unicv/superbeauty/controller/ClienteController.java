@@ -21,12 +21,12 @@ import br.com.unicv.superbeauty.service.ClienteService;
 @RestController
 @RequestMapping(value = "/cliente")
 public class ClienteController {
-    
+
     @Autowired
     private ClienteService clienteService;
 
     @GetMapping
-    public ResponseEntity<List<Cliente>> listarClientes(){
+    public ResponseEntity<List<Cliente>> listarClientes() {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.listar());
     }
 
@@ -36,17 +36,17 @@ public class ClienteController {
     }
 
     @PostMapping()
-    public ResponseEntity<Cliente> criar(@RequestBody Cliente clienteNovo){
+    public ResponseEntity<Cliente> criar(@RequestBody Cliente clienteNovo) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.cadastrar(clienteNovo));
     }
 
     @PutMapping
-    public ResponseEntity<Cliente> editar(@RequestBody Cliente clienteEditado){
+    public ResponseEntity<Cliente> editar(@RequestBody Cliente clienteEditado) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.editar(clienteEditado));
     }
 
     @DeleteMapping("/{codCliente}")
-    public ResponseEntity<String> excluir(@PathVariable("codCliente") Integer codCliente){
+    public ResponseEntity<String> excluir(@PathVariable("codCliente") Integer codCliente) {
         clienteService.excluir(codCliente);
         return ResponseEntity.status(HttpStatus.OK).body("Cliente excluído com sucesso");
     }

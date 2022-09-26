@@ -20,7 +20,7 @@ import br.com.unicv.superbeauty.service.AgendamentoService;
 @RestController
 @RequestMapping(value = "/agendamento")
 public class AgendamentoController {
-    
+
     @Autowired
     private AgendamentoService agendamentoService;
 
@@ -31,17 +31,17 @@ public class AgendamentoController {
 
     @PostMapping()
     public ResponseEntity<Agendamento> criar(@RequestBody Agendamento agendamentoNovo) {
-            return ResponseEntity.status(HttpStatus.OK).body(agendamentoService.cadastrar(agendamentoNovo));
+        return ResponseEntity.status(HttpStatus.OK).body(agendamentoService.cadastrar(agendamentoNovo));
     }
-    
+
     @PutMapping()
     public ResponseEntity<Agendamento> editar(@RequestBody Agendamento agendamentoEditado) {
         return ResponseEntity.status(HttpStatus.OK).body(agendamentoService.editar(agendamentoEditado));
     }
 
     @DeleteMapping("/{codAgendamento}")
-    public ResponseEntity<Void> excluir(@PathVariable("codAgendamento") Integer codAgendamento) {
-       agendamentoService.excluir(codAgendamento);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> excluir(@PathVariable("codAgendamento") Integer codAgendamento) {
+        agendamentoService.excluir(codAgendamento);
+        return ResponseEntity.status(HttpStatus.OK).body("Agendamento excluído com sucesso");
     }
 }
