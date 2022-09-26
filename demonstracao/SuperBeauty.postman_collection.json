@@ -1,0 +1,576 @@
+{
+	"info": {
+		"_postman_id": "b50b6ac2-6c58-4d8c-9968-d32c09986f85",
+		"name": "SuperBeauty",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EMPRESA",
+			"item": [
+				{
+					"name": "POST - EMPRESA",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cnpj\": \"3311664400001\",\r\n    \"razaoSocial\": \"SuperBeauty\",\r\n    \"status\": true,\r\n    \"logradouro\": \"Rua Bonita\",\r\n    \"numero\": \"100\",\r\n    \"bairro\": \"bairro Lindo\",\r\n    \"cep\": \"00000000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/empresa",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"empresa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - EMPRESA",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/empresa",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"empresa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - POR CNPJ - EMPRESA",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/empresa/cnpj?cnpj=7777",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"empresa",
+								"cnpj"
+							],
+							"query": [
+								{
+									"key": "cnpj",
+									"value": "7777"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - EMPRESA",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codEmpresa\": 1,\r\n    \"cnpj\": \"00000000000000\",\r\n    \"razaoSocial\": \"SuperBeauty\",\r\n    \"status\": false,\r\n    \"logradouro\": \"rua\",\r\n    \"numero\": \"10\",\r\n    \"bairro\": \"bairro\",\r\n    \"cep\": \"00000000\"\r\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/empresa",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"empresa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - EMPRESA",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/empresa/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"empresa",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COLABORADOR",
+			"item": [
+				{
+					"name": "GET - COLABORADOR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Kassia\",\r\n    \"dataNascimento\": \"20-08-1995\",\r\n    \"email\": \"kassia@email\",\r\n    \"celular\": \"00000000000\",\r\n    \"dataContato\": \"20-09-2020\",\r\n    \"status\": true,\r\n    \"empresa\": {\r\n        \"codEmpresa\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/colaborador",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"colaborador"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - COLABORADOR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/colaborador",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"colaborador"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - POR EMAIL - COLABORADOR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/colaborador/email?email=ka@mail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"colaborador",
+								"email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "ka@mail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - COLABORADOR",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"codColaborador\": 34,\r\n    \"nome\": \"Kassia Zama\",\r\n    \"dataNascimento\": \"18-08-1995\",\r\n    \"email\": \"kazama@mail.com\",\r\n    \"celular\": \"00000000000\",\r\n    \"dataContato\": \"20-09-2020\",\r\n    \"status\": true,\r\n    \"empresa\": {\r\n        \"codEmpresa\": 1\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/colaborador",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"colaborador"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - COLABORADOR",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/colaborador/34",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"colaborador",
+								"34"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CLIENTE",
+			"item": [
+				{
+					"name": "GET - CLIENTE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - POR CPF - CLIENTE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cliente/cpf?cpf=444",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente",
+								"cpf"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "444"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - CLIENTE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"nome\": \"Natalia\",\r\n        \"cpf\": \"111111111\",\r\n        \"dataNascimento\": \"10-02-1999\",\r\n        \"genero\": \"FEMININO\",\r\n        \"celular\": \"44999999999\",\r\n        \"email\": \"nat@email.com\",\r\n        \"logradouro\": \"rua da Lindinha\",\r\n        \"bairro\": \"bairro lindo\",\r\n        \"numero\": \"10\",\r\n        \"cep\": \"00000000\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - CLIENTE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"codCliente\": 1,\r\n        \"nome\": \"Brunna\",\r\n        \"cpf\": \"000000000\",\r\n        \"dataNascimento\": \"18-08-2001\",\r\n        \"genero\": \"FEMININO\",\r\n        \"celular\": \"44999999999\",\r\n        \"email\": \"brunna@email.com\",\r\n        \"logradouro\": \"rua perto da Kassia\",\r\n        \"bairro\": \"bairro lindo\",\r\n        \"numero\": \"20\",\r\n        \"cep\": \"00000000\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - CLIENTE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/cliente/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cliente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SERVIÇO",
+			"item": [
+				{
+					"name": "GET - SERVIÇO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - SERVIÇO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/servico/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - SERVIÇO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"drenagem linfática\",\r\n    \"duracao\": 2,\r\n    \"valorServico\": 100.00,\r\n    \"empresa\": {\r\n        \"codEmpresa\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - SERVIÇO",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codServico\": 1,\r\n    \"descricao\": \"limpeza de pele\",\r\n    \"duracao\": 1,\r\n    \"valorServico\": 80.00,\r\n    \"empresa\": {\r\n        \"codEmpresa\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/servico",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"servico"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AGENDAMENTO",
+			"item": [
+				{
+					"name": "POST - AGENDAMENTO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"dataHora\": \"24-09-2022 10:00\",\r\n    \"colaborador\": {\r\n        \"codColaborador\": 1\r\n    },\r\n    \"empresa\": {\r\n        \"codEmpresa\": 1\r\n    },\r\n    \"servico\": {\r\n        \"codServico\": 1\r\n    },\r\n    \"cliente\": {\r\n        \"codCliente\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/agendamento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET - AGENDAMENTO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/agendamento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - AGENDAMENTO",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \"codAgendamento\": 2,\r\n    \"dataHora\": \"23-09-2022 12:00:00\",\r\n    \"colaborador\": {\r\n        \"codColaborador\": 1\r\n    },\r\n    \"empresa\": {\r\n        \"codEmpresa\": 1\r\n    },\r\n    \"servico\": {\r\n        \"codServico\": 1\r\n    },\r\n    \"cliente\": {\r\n        \"codCliente\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/agendamento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - AGENDAMENTO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/agendamento/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamento",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
